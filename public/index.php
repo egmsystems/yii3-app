@@ -29,6 +29,7 @@ if (PHP_SAPI === 'cli-server') {
     // Serve static files as is.
     /** @var string $path */
     $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $path = urldecode($path);//it is necessary to file name with characters not alphanumeric. Ex: space, ñáéíóúÑÁÉÍÓÚ
     if (is_file(__DIR__ . $path)) {
         return false;
     }
